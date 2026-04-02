@@ -21,9 +21,7 @@ const seedDatabase = async () => {
       { name: 'Audio', parent_id: null },
       { name: 'TV', parent_id: null },
       { name: 'Accessories', parent_id: null },
-      { name: 'Utensils', parent_id: null },
-      { name: 'Electronics', parent_id: null },
-      { name: 'Kitchen', parent_id: null }
+      { name: 'Others', parent_id: null }
     ];
     
     const createdCategories = [];
@@ -33,26 +31,34 @@ const seedDatabase = async () => {
       console.log(`  ✅ Created category: ${cat.name}`);
     }
     
-    const utensilsCategory = createdCategories.find(c => c.name === 'Utensils');
     const audioCategory = createdCategories.find(c => c.name === 'Audio');
+    const tvCategory = createdCategories.find(c => c.name === 'TV');
     const accessoriesCategory = createdCategories.find(c => c.name === 'Accessories');
+    const othersCategory = createdCategories.find(c => c.name === 'Others');
     
-    const utensilsSubs = ['Knives', 'Cookware', 'Cutlery', 'Kitchen Tools'];
-    for (const sub of utensilsSubs) {
-      await Category.create({ name: sub, parent_id: utensilsCategory._id });
-      console.log(`  ✅ Created subcategory: ${sub} (under Utensils)`);
-    }
-    
+    // Subcategories
     const audioSubs = ['Headphones', 'Speakers', 'Earbuds', 'Microphones'];
     for (const sub of audioSubs) {
       await Category.create({ name: sub, parent_id: audioCategory._id });
-      console.log(`  ✅ Created subcategory: ${sub} (under Audio)`);
+      console.log(`  ✅ Created: Audio → ${sub}`);
+    }
+    
+    const tvSubs = ['Smart TVs', 'LED TVs', 'OLED TVs', 'Projectors'];
+    for (const sub of tvSubs) {
+      await Category.create({ name: sub, parent_id: tvCategory._id });
+      console.log(`  ✅ Created: TV → ${sub}`);
     }
     
     const accessoriesSubs = ['Chargers', 'Cables', 'Power Banks', 'Adapters'];
     for (const sub of accessoriesSubs) {
       await Category.create({ name: sub, parent_id: accessoriesCategory._id });
-      console.log(`  ✅ Created subcategory: ${sub} (under Accessories)`);
+      console.log(`  ✅ Created: Accessories → ${sub}`);
+    }
+    
+    const othersSubs = ['Miscellaneous', 'Gadgets', 'Special Items'];
+    for (const sub of othersSubs) {
+      await Category.create({ name: sub, parent_id: othersCategory._id });
+      console.log(`  ✅ Created: Others → ${sub}`);
     }
     
     console.log('👤 Creating admin user...');
