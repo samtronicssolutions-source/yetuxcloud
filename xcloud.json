@@ -1,0 +1,11 @@
+{
+  "name": "yetu",
+  "node_version": "20",
+  "port": 3000,
+  "start_command": "node server.js",
+  "build_command": "npm install",
+  "env_vars": {
+    "NODE_ENV": "production",
+    "PORT": "3000"
+  }
+}
